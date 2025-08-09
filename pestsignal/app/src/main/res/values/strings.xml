@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PestSignal</string>
+    
+    <!-- Main Activity -->
+    <string name="title_pestsignal">PestSignal</string>
+    <string name="add_image_to_detect">Add image to detect</string>
+    <string name="detect_button">Detect</string>
+    <string name="processing">Processing...</string>
+    <string name="detection_results">Detection Results</string>
+    <string name="prevention_methods">Prevention Methods:</string>
+    <string name="detection_completed">Detection completed!</string>
+    <string name="no_image_data">No image data received</string>
+    <string name="detection_failed">Detection failed</string>
+    <string name="error_parsing_response">Error parsing response</string>
+    <string name="error_decoding_image">Error decoding image</string>
+    <string name="error_displaying_image">Error displaying image</string>
+    <string name="error_processing_image">Error: Could not process image</string>
+    <string name="please_select_image">Please select an image first</string>
+    <string name="permission_denied_images">Permission denied to access images</string>
+    
+    <!-- Settings Activity -->
+    <string name="settings">Settings</string>
+    <string name="login">Login</string>
+    <string name="add_new_dataset">Add New Dataset</string>
+    <string name="developer_info">Developer Info</string>
+    <string name="language">Language</string>
+    <string name="login_coming_soon">Login feature coming soon!</string>
+    <string name="add_dataset_coming_soon">Add Dataset feature coming soon!</string>
+    <string name="dev_info_coming_soon">Developer Info feature coming soon!</string>
+    <string name="language_coming_soon">Language selection coming soon!</string>
+    
+    <!-- Login Activity -->
+    <string name="login_title">Login</string>
+    <string name="name_hint">Enter your name</string>
+    <string name="pin_hint">Enter your PIN</string>
+    <string name="login_button">Login</string>
+    <string name="name_required">Name is required</string>
+    <string name="pin_required">PIN is required</string>
+    <string name="pin_length_error">PIN must be 4 digits</string>
+    <string name="login_success">Login successful!</string>
+    <string name="login_failed">Login failed. Please try again.</string>
+    
+    <!-- Detection Info -->
+    <string name="unknown_insect">Unknown Insect</string>
+    <string name="image_data_length">Image data length</string>
+    <string name="characters">characters</string>
+    <string name="not_provided">Not provided</string>
+    
+    <!-- Language Names -->
+    <string name="english">English</string>
+    <string name="bengali">বাংলা</string>
+</resources>

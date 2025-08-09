@@ -1,0 +1,36 @@
+{
+  "name": "pestsignal-server",
+  "version": "1.0.0",
+  "main": "src/server.ts",
+  "scripts": {
+    "start": "concurrently \"npm run js:server\" \"npm run py:server\"",
+    "js:server": "bun --watch src/server.ts",
+    "py:server": "cd .. && python -m uvicorn main:app --reload",
+    "dev": "bun --watch src/server.ts",
+    "build": "tsc",
+    "serve": "bun src/server.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^6.13.0",
+    "@prisma/extension-accelerate": "^2.0.2",
+    "@types/cors": "^2.8.19",
+    "@types/morgan": "^1.9.10",
+    "concurrently": "^9.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.1",
+    "multer": "^2.0.2",
+    "prisma": "^6.13.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^24.2.0",
+    "typescript": "^5.9.2"
+  }
+}

@@ -12,3 +12,10 @@ pip install -r requirements.txt
 python -m uvicorn main:app --reload
 ```
 # pest-detector
+
+## Run label-studio
+```bash
+cd label-studio
+source env/bin/activate
+label-studio
+```

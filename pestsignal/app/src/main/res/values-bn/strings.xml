@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">পেস্ট সিগনাল</string>
+    
+    <!-- Main Activity -->
+    <string name="title_pestsignal">পেস্ট সিগনাল</string>
+    <string name="add_image_to_detect">ছবি নির্বাচন করুন</string>
+    <string name="detect_button">শনাক্ত করুন</string>
+    <string name="processing">প্রক্রিয়াকরণ হচ্ছে...</string>
+    <string name="detection_results">শনাক্তকরণ ফলাফল</string>
+    <string name="prevention_methods">প্রতিরোধ পদ্ধতি:</string>
+    <string name="detection_completed">শনাক্তকরণ সম্পন্ন!</string>
+    <string name="no_image_data">কোন ছবির ডেটা পাওয়া যায়নি</string>
+    <string name="detection_failed">শনাক্তকরণ ব্যর্থ</string>
+    <string name="error_parsing_response">প্রতিক্রিয়া পার্স করতে সমস্যা</string>
+    <string name="error_decoding_image">ছবি ডিকোড করতে সমস্যা</string>
+    <string name="error_displaying_image">ছবি প্রদর্শনে সমস্যা</string>
+    <string name="error_processing_image">ছবি প্রক্রিয়াকরণে সমস্যা</string>
+    <string name="please_select_image">অনুগ্রহ করে একটি ছবি নির্বাচন করুন</string>
+    <string name="permission_denied_images">ছবি অ্যাক্সেসের অনুমতি অস্বীকৃত</string>
+    
+    <!-- Settings Activity -->
+    <string name="settings">সেটিংস</string>
+    <string name="login">লগইন</string>
+    <string name="add_new_dataset">নতুন ডেটাসেট যোগ করুন</string>
+    <string name="developer_info">ডেভেলপার তথ্য</string>
+    <string name="language">ভাষা</string>
+    <string name="login_coming_soon">লগইন বৈশিষ্ট্য শীঘ্রই আসছে!</string>
+    <string name="add_dataset_coming_soon">ডেটাসেট যোগ করার বৈশিষ্ট্য শীঘ্রই আসছে!</string>
+    <string name="dev_info_coming_soon">ডেভেলপার তথ্য বৈশিষ্ট্য শীঘ্রই আসছে!</string>
+    <string name="language_coming_soon">ভাষা নির্বাচন শীঘ্রই আসছে!</string>
+    
+    <!-- Login Activity -->
+    <string name="login_title">লগইন</string>
+    <string name="name_hint">আপনার নাম লিখুন</string>
+    <string name="pin_hint">আপনার পিন লিখুন</string>
+    <string name="login_button">লগইন</string>
+    <string name="name_required">নাম প্রয়োজন</string>
+    <string name="pin_required">পিন প্রয়োজন</string>
+    <string name="pin_length_error">পিন ৪ অঙ্কের হতে হবে</string>
+    <string name="login_success">লগইন সফল!</string>
+    <string name="login_failed">লগইন ব্যর্থ। আবার চেষ্টা করুন।</string>
+    
+    <!-- Detection Info -->
+    <string name="unknown_insect">অজানা পোকা</string>
+    <string name="image_data_length">ছবির ডেটা দৈর্ঘ্য</string>
+    <string name="characters">অক্ষর</string>
+    <string name="not_provided">প্রদান করা হয়নি</string>
+    
+    <!-- Language Names -->
+    <string name="english">ইংরেজি</string>
+    <string name="bengali">বাংলা</string>
+</resources> 
