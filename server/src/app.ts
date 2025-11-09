@@ -3,6 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import authRoutes from './routes/auth';
 import uploadRoutes from './routes/upload';
+import detectionRoutes from './routes/detection';
 import { errorHandler } from './middleware/errorHandler';
 
 const app = express();
@@ -20,6 +21,7 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authRoutes);
 app.use('/api', uploadRoutes);
+app.use('/api/detection', detectionRoutes);
 
 // Error handling middleware (must be last)
 app.use(errorHandler);

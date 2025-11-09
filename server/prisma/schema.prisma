@@ -14,4 +14,19 @@ model User {
     pin       String
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+    detectionReports DetectionReport[]
+}
+
+model DetectionReport {
+    id          String   @id @default(uuid())
+    userId      String
+    user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    insectName  String
+    insectType  String
+    confidence  Float
+    imagePath   String?
+    location    String?
+    notes       String?
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
 }

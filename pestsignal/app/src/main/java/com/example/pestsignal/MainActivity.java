@@ -52,7 +52,6 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     private Button detectButton;
-    private Button yoloDetectButton;
     private ImageButton settingsButton;
     private ImageView imageView;
     private TextView placeholderText;
@@ -89,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         
         // Initialize views
         detectButton = findViewById(R.id.detectButton);
-        yoloDetectButton = findViewById(R.id.yoloDetectButton);
         settingsButton = findViewById(R.id.settingsButton);
         imageView = findViewById(R.id.imageView);
         placeholderText = findViewById(R.id.placeholderText);
@@ -108,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
         
         // Set up button click listeners
         detectButton.setOnClickListener(v -> checkPermissionAndPickImage());
-        yoloDetectButton.setOnClickListener(v -> openYoloDetection());
         settingsButton.setOnClickListener(v -> openSettings());
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -138,19 +135,27 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     
-    private void openYoloDetection() {
-        Intent intent = new Intent(this, YoloDetectionActivity.class);
-        startActivity(intent);
-    }
-    
     private void checkPermissionAndPickImage() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) 
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, 
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 
-                    PERMISSION_REQUEST_CODE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            // Android 13+ (API 33+) - use READ_MEDIA_IMAGES
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) 
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, 
+                        new String[]{Manifest.permission.READ_MEDIA_IMAGES}, 
+                        PERMISSION_REQUEST_CODE);
+            } else {
+                pickImage();
+            }
         } else {
-            pickImage();
+            // Android 12 and below - use READ_EXTERNAL_STORAGE
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) 
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, 
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 
+                        PERMISSION_REQUEST_CODE);
+            } else {
+                pickImage();
+            }
         }
     }
     
@@ -267,6 +272,7 @@ public class MainActivity extends AppCompatActivity {
                     String type = insectInfo.optString("type", "");
                     String description = insectInfo.optString("description", "");
                     String prevention = insectInfo.optString("prevention", "");
+                    double confidence = firstDetection.optDouble("confidence", 0.0);
                     
                     insectName.setText(name);
                     insectType.setText(type);
@@ -275,6 +281,9 @@ public class MainActivity extends AppCompatActivity {
                     
                     // Show the detection scroll view
                     detectionScrollView.setVisibility(View.VISIBLE);
+                    
+                    // Save detection report to database
+                    saveDetectionReport(name, type, confidence);
                 } else {
                     detectionScrollView.setVisibility(View.GONE);
                 }
@@ -330,6 +339,74 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     
+    private void showPermissionSettingsDialog() {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Permission Required")
+                .setMessage("Image access permission is required to select images for pest detection. Please enable it in app settings.")
+                .setPositiveButton("Settings", (dialog, which) -> {
+                    // Open app settings
+                    Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    Uri uri = Uri.fromParts("package", getPackageName(), null);
+                    intent.setData(uri);
+                    startActivity(intent);
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+    
+    private void saveDetectionReport(String insectName, String insectType, double confidence) {
+        // Get current user ID from shared preferences (assuming user is logged in)
+        String userId = getSharedPreferences("PestSignalPrefs", MODE_PRIVATE)
+                .getString("userId", null);
+        
+        if (userId == null) {
+            // User not logged in, skip saving
+            return;
+        }
+        
+        // Create JSON payload
+        JSONObject reportData = new JSONObject();
+        try {
+            reportData.put("userId", userId);
+            reportData.put("insectName", insectName);
+            reportData.put("insectType", insectType);
+            reportData.put("confidence", confidence);
+            reportData.put("location", ""); // Can be enhanced later with GPS
+            reportData.put("notes", ""); // Can be enhanced later
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+        
+        // Create request body
+        RequestBody requestBody = RequestBody.create(
+                MediaType.parse("application/json"), 
+                reportData.toString()
+        );
+        
+        Request request = new Request.Builder()
+                .url("http://10.0.2.2:8001/api/detection/report")
+                .post(requestBody)
+                .addHeader("Content-Type", "application/json")
+                .build();
+        
+        // Make the network call
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // Silently fail - don't show error to user for background operation
+                System.out.println("Failed to save detection report: " + e.getMessage());
+            }
+            
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (!response.isSuccessful()) {
+                    System.out.println("Failed to save detection report: HTTP " + response.code());
+                }
+            }
+        });
+    }
+    
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -337,7 +414,22 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 pickImage();
             } else {
-                Toast.makeText(this, getString(R.string.permission_denied_images), Toast.LENGTH_SHORT).show();
+                // Check if permission was permanently denied
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                    if (!shouldShowRequestPermissionRationale(Manifest.permission.READ_MEDIA_IMAGES)) {
+                        // Permission permanently denied, show settings dialog
+                        showPermissionSettingsDialog();
+                    } else {
+                        Toast.makeText(this, getString(R.string.permission_denied_images), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    if (!shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        // Permission permanently denied, show settings dialog
+                        showPermissionSettingsDialog();
+                    } else {
+                        Toast.makeText(this, getString(R.string.permission_denied_images), Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         }
     }

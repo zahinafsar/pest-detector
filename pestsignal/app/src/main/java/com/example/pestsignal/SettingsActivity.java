@@ -27,7 +27,8 @@ public class SettingsActivity extends AppCompatActivity {
         android.R.drawable.ic_menu_myplaces,
         android.R.drawable.ic_menu_upload,
         android.R.drawable.ic_menu_info_details,
-        android.R.drawable.ic_menu_edit
+        android.R.drawable.ic_menu_edit,
+        android.R.drawable.ic_menu_agenda
     };
 
     @Override
@@ -40,7 +41,8 @@ public class SettingsActivity extends AppCompatActivity {
             getString(R.string.login),
             getString(R.string.add_new_dataset),
             getString(R.string.developer_info),
-            getString(R.string.language)
+            getString(R.string.language),
+            getString(R.string.statistics)
         };
 
         // Initialize views
@@ -97,6 +99,9 @@ public class SettingsActivity extends AppCompatActivity {
             case 3:
                 handleLanguageClick();
                 break;
+            case 4:
+                handleStatisticsClick();
+                break;
         }
     }
 
@@ -152,6 +157,20 @@ public class SettingsActivity extends AppCompatActivity {
     private void handleLanguageClick() {
         // Show language selection dialog
         showLanguageDialog();
+    }
+
+    private void handleStatisticsClick() {
+        // Check if user is logged in
+        boolean isLoggedIn = getSharedPreferences("PestSignalPrefs", MODE_PRIVATE)
+                .getBoolean("isLoggedIn", false);
+        
+        if (isLoggedIn) {
+            // Launch statistics activity
+            Intent intent = new Intent(this, StatisticsActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, getString(R.string.please_login_first), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void showLanguageDialog() {

@@ -50,4 +50,18 @@
     <!-- Language Names -->
     <string name="english">ইংরেজি</string>
     <string name="bengali">বাংলা</string>
+    
+    <!-- Statistics Activity -->
+    <string name="statistics">পরিসংখ্যান</string>
+    <string name="overview">সংক্ষিপ্ত বিবরণ</string>
+    <string name="total_detections">মোট শনাক্তকরণ</string>
+    <string name="average_confidence">গড় আস্থা</string>
+    <string name="top_insects">শীর্ষ পোকামাকড়</string>
+    <string name="top_types">শীর্ষ প্রকার</string>
+    <string name="recent_detections">সাম্প্রতিক শনাক্তকরণ</string>
+    <string name="refresh">রিফ্রেশ</string>
+    <string name="back">ফিরে যান</string>
+    <string name="user_not_logged_in">ব্যবহারকারী লগইন করেননি</string>
+    <string name="failed_to_load_statistics">পরিসংখ্যান লোড করতে ব্যর্থ</string>
+    <string name="please_login_first">পরিসংখ্যান দেখতে অনুগ্রহ করে প্রথমে লগইন করুন</string>
 </resources> 

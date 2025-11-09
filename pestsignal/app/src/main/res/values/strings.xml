@@ -50,4 +50,34 @@
     <!-- Language Names -->
     <string name="english">English</string>
     <string name="bengali">বাংলা</string>
+    
+    <!-- Statistics Activity -->
+    <string name="statistics">Statistics</string>
+    <string name="overview">Overview</string>
+    <string name="total_detections">Total Detections</string>
+    <string name="average_confidence">Average Confidence</string>
+    <string name="top_insects">Top Insects</string>
+    <string name="top_types">Top Types</string>
+    <string name="recent_detections">Recent Detections</string>
+    <string name="refresh">Refresh</string>
+    <string name="back">Back</string>
+    <string name="user_not_logged_in">User not logged in</string>
+    <string name="failed_to_load_statistics">Failed to load statistics</string>
+    <string name="please_login_first">Please login first to view statistics</string>
+    
+    <!-- Local Detection Activity -->
+    <string name="local_detection_title">Local Insect Detection</string>
+    <string name="select_image">Select Image</string>
+    <string name="detect_insect">Detect Insect</string>
+    <string name="select_image_placeholder">Select an image to detect insects</string>
+    <string name="detection_results_title">Detection Results</string>
+    <string name="no_insect_detected">No insect detected</string>
+    <string name="detection_completed_local">Detection completed!</string>
+    <string name="no_insect_found">No insect detected in the image</string>
+    <string name="please_select_image_first">Please select an image first</string>
+    <string name="processing_local">Processing...</string>
+    <string name="detection_failed_local">Detection failed</string>
+    <string name="error_loading_model">Error loading model</string>
+    <string name="permission_denied_images_local">Permission denied to access images</string>
+    <string name="local_detection">Local Detection</string>
 </resources>
