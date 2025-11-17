@@ -3,12 +3,8 @@
   "version": "1.0.0",
   "main": "src/server.ts",
   "scripts": {
-    "start": "concurrently \"npm run js:server\" \"npm run py:server\"",
-    "js:server": "bun --watch src/server.ts",
-    "py:server": "cd .. && python -m uvicorn main:app --reload",
-    "dev": "bun --watch src/server.ts",
-    "build": "tsc",
-    "serve": "bun src/server.ts"
+    "start": "bun src/server.ts",
+    "dev": "bun --watch src/server.ts"
   },
   "author": "",
   "license": "ISC",

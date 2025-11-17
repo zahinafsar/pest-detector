@@ -83,30 +83,34 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/card_background"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:padding="20dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="2dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/overview"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
                     android:textColor="#333333"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="20dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="16dp"
+                    android:padding="12dp"
+                    android:background="#F5F5F5"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/total_detections"
-                        android:textSize="16sp"
+                        android:textSize="17sp"
                         android:textColor="#666666" />
 
                     <TextView
@@ -114,23 +118,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        android:textSize="16sp"
+                        android:textSize="24sp"
                         android:textStyle="bold"
-                        android:textColor="#333333" />
+                        android:textColor="#4CAF50"
+                        android:paddingStart="8dp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="#F5F5F5"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/average_confidence"
-                        android:textSize="16sp"
+                        android:textSize="17sp"
                         android:textColor="#666666" />
 
                     <TextView
@@ -138,9 +146,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0%"
-                        android:textSize="16sp"
+                        android:textSize="24sp"
                         android:textStyle="bold"
-                        android:textColor="#333333" />
+                        android:textColor="#2196F3"
+                        android:paddingStart="8dp" />
 
                 </LinearLayout>
 
@@ -162,6 +171,12 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#333333"
+                    android:layout_marginBottom="16dp" />
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/topInsectsChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
                     android:layout_marginBottom="16dp" />
 
                 <LinearLayout
@@ -190,6 +205,12 @@
                     android:textColor="#333333"
                     android:layout_marginBottom="16dp" />
 
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/topTypesChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginBottom="16dp" />
+
                 <LinearLayout
                     android:id="@+id/topTypesLayout"
                     android:layout_width="match_parent"
@@ -204,8 +225,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/card_background"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:padding="20dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="2dp">
 
                 <TextView
                     android:layout_width="match_parent"

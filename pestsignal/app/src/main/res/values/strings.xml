@@ -18,6 +18,8 @@
     <string name="error_processing_image">Error: Could not process image</string>
     <string name="please_select_image">Please select an image first</string>
     <string name="permission_denied_images">Permission denied to access images</string>
+    <string name="error_loading_image">Error loading image</string>
+    <string name="no_detections_found">No detections found</string>
     
     <!-- Settings Activity -->
     <string name="settings">Settings</string>
@@ -59,6 +61,7 @@
     <string name="top_insects">Top Insects</string>
     <string name="top_types">Top Types</string>
     <string name="recent_detections">Recent Detections</string>
+    <string name="no_recent_detections">No recent detections</string>
     <string name="refresh">Refresh</string>
     <string name="back">Back</string>
     <string name="user_not_logged_in">User not logged in</string>

@@ -1,0 +1,98 @@
+[
+  {
+    "key": "grasshopper",
+    "name": {
+      "en": "Grasshopper",
+      "bn": "ফড়িং"
+    },
+    "type": {
+      "en": "Leaf and Stem Pest",
+      "bn": "পাতা ও কাণ্ড ক্ষতিকারী"
+    },
+    "description": {
+      "en": "Grasshoppers feed on leaves and stems of rice, wheat, corn, and vegetables. They move in groups and can completely destroy crops. During breeding season, their numbers increase rapidly. They are more common in the Barind region during dry seasons.",
+      "bn": "ফড়িং ধান, গম, ভুট্টা ও সবজির পাতা ও কাণ্ড কেটে খায়। এরা দলবদ্ধভাবে চলাফেরা করে ও ফসল খেয়ে ফেলে। অতিরিক্ত আক্রমণে জমি একদম খালি হয়ে যেতে পারে। প্রজননের সময় খুব দ্রুত সংখ্যা বৃদ্ধি পায়। বরেন্দ্র অঞ্চলে শুষ্ক মৌসুমে বেশি দেখা যায়।"
+    },
+    "prevention": {
+      "en": "➤ Handpick and destroy them in the morning or evening.\n➤ Clear weeds around the field to prevent breeding grounds.\n➤ Spray neem oil or neem seed extract (50-70 ml in 5 liters of water).\n➤ Place bamboo poles or stakes for natural predators to hunt.",
+      "bn": "➤ সকালে বা বিকেলে হাতে ধরে ধ্বংস করুন।\n➤ ক্ষেতের চারপাশের আগাছা পরিষ্কার করুন যাতে প্রজননের স্থান না পায়।\n➤ নিম তেল বা নিম বীজ নির্যাস স্প্রে করতে পারেন (৫ লিটার পানিতে ৫০-৭০ মি.লি)।\n➤ পাখি বসার বাঁশ বা খুঁটি গেড়ে দিন যাতে প্রাকৃতিক শত্রুরা শিকার করতে পারে।"
+    }
+  },
+  {
+    "key": "beetle",
+    "name": {
+      "en": "Beetle",
+      "bn": "গুবরে পোকা"
+    },
+    "type": {
+      "en": "Leaf and Fruit Pest",
+      "bn": "পাতা ও ফল ক্ষতিকারী"
+    },
+    "description": {
+      "en": "Beetles (especially red beetles and pumpkin beetles) create holes in leaves of eggplant, bottle gourd, pumpkin, sweet pumpkin, and cucumber. Their attacks weaken plants and reduce yield. Some species are active at night.",
+      "bn": "গুবরে পোকা (বিশেষ করে লাল গুবরে ও কুমড়া গুবরে) বেগুন, লাউ, কুমড়া, মিষ্টি কুমড়া ও শসার পাতায় গর্ত করে খায়। এদের আক্রমণে গাছ দুর্বল হয়ে পড়ে এবং ফলন কমে যায়। কিছু প্রজাতি রাতের বেলা সক্রিয় হয়।"
+    },
+    "prevention": {
+      "en": "➤ Collect beetles by shaking leaves under the plant and destroy them.\n➤ Use pheromone traps, especially around pumpkin plants.\n➤ Use light traps or organic pesticides like Spinosad.\n➤ Kerosene mixed water can be used to destroy pests in the field.",
+      "bn": "➤ গাছের নিচে পাতা ঝরিয়ে দিয়ে পোকা সংগ্রহ করে ধ্বংস করুন।\n➤ ফেরোমন ফাঁদ ব্যবহার করুন, বিশেষ করে কুমড়ার গাছের আশেপাশে।\n➤ আলোক ফাঁদ বা জৈব কীটনাশক যেমন Spinosad প্রয়োগ করুন।\n➤ ক্ষেতে কেরোসিন মিশ্রিত পানি দিয়ে পোকা ধ্বংস করা যেতে পারে।"
+    }
+  },
+  {
+    "key": "aphid",
+    "name": {
+      "en": "Aphid",
+      "bn": "ফুদকী পোকা"
+    },
+    "type": {
+      "en": "Sap-sucking Pest",
+      "bn": "রসচুষে ক্ষতিকারী"
+    },
+    "description": {
+      "en": "Aphids hide under leaves of rice, mustard, okra, radish, and various vegetables, sucking plant sap. They curl leaves and spread viral diseases like leaf curl and yellow disease. They move in colonies and are protected by ants.",
+      "bn": "ফুদকী পোকা ধান, সরিষা, ঢেঁড়স, মুলা ও বিভিন্ন শাকসবজির পাতার নিচে লুকিয়ে থেকে গাছের রস শুষে নেয়। এটি পাতাকে কুঁচকে দেয় এবং ভাইরাস রোগ যেমন পাতার মোচড় এবং হলুদ রোগ ছড়িয়ে দেয়। উপনিবেশ আকারে চলাফেরা করে এবং পিঁপড়া এদের রক্ষা করে।"
+    },
+    "prevention": {
+      "en": "➤ Spray soapy water (5 ml liquid soap in 1 liter of water).\n➤ Use neem oil or neem seed extract.\n➤ Control ant infestations.\n➤ Consider pollination damage before applying pesticides when flowers/buds are present.",
+      "bn": "➤ সাবান পানি (১ লিটার পানিতে ৫ মি.লি তরল সাবান) স্প্রে করুন।\n➤ নিম তেল বা নিম বীজ নির্যাস ব্যবহার করুন।\n➤ পিঁপড়ার আক্রমণ নিয়ন্ত্রণ করতে হবে।\n➤ জমিতে বালাইনাশক প্রয়োগের আগে বাচ্চা/ফুল থাকলে পরাগায়নে ক্ষতি হবে কি না তা বিবেচনা করুন।"
+    }
+  },
+  {
+    "key": "snail",
+    "name": {
+      "en": "Snail",
+      "bn": "ঘোঁট পোকা / শামুক"
+    },
+    "type": {
+      "en": "Root and Leaf Pest",
+      "bn": "গোড়া ও পাতাজীবী ক্ষতিকারী"
+    },
+    "description": {
+      "en": "Snails or slugs are more common in fields during the rainy season. They especially attack rice, onion, garlic, cabbage, and carrot plants. They cut the roots and tender parts of plants, causing seedlings to die. They are more active at night.",
+      "bn": "শামুক বা ঘোঁট পোকা বর্ষা মৌসুমে জমিতে বেশি দেখা যায়। বিশেষ করে ধান, পেঁয়াজ, রসুন, বাঁধাকপি এবং গাজর গাছে আক্রমণ করে। তারা গাছের গোড়া ও কচি অংশ কেটে ফেলে, ফলশ্রুতিতে চারা নষ্ট হয়ে যায়। রাতে এরা বেশি সক্রিয় থাকে।"
+    },
+    "prevention": {
+      "en": "➤ Collect snails by hand in the morning and put them in salt-mixed water.\n➤ Spread ash and lime in the field to keep it dry.\n➤ Control water flow to keep the field dry.\n➤ Use thorn nets or plastic barriers to prevent entry into the field.",
+      "bn": "➤ সকালে হাতে ধরে শামুক সংগ্রহ করে লবণ মিশ্রিত পানিতে ফেলুন।\n➤ জমিতে ছাই ও চুন ছিটিয়ে শুকনো রাখুন।\n➤ পানির প্রবাহ নিয়ন্ত্রণ করে জমি শুকনা রাখা যায়।\n➤ কাঁটার জাল বা প্লাস্টিক ব্যারিয়ার ব্যবহার করুন যাতে জমিতে না প্রবেশ করতে পারে।"
+    }
+  },
+  {
+    "key": "caterpillar",
+    "name": {
+      "en": "Caterpillar",
+      "bn": "শুঁয়োপোকা / ঝিঁঝিঁ পোকা"
+    },
+    "type": {
+      "en": "Leaf-eating Larva",
+      "bn": "পাতাজীবী লার্ভা"
+    },
+    "description": {
+      "en": "Caterpillars eat leaves of vegetables and rice plants. They create holes in leaves of eggplant, cabbage, cauliflower, mustard, etc., and damage buds. They hide by wrapping themselves in leaves. Multiple species cause damage, such as diamondback and armyworm.",
+      "bn": "শুঁয়োপোকা সবজি ও ধান গাছের পাতা কেটে খায়। বেগুন, বাঁধাকপি, ফুলকপি, সরিষা ইত্যাদির পাতায় গর্ত করে এবং কুঁড়ি নষ্ট করে। এরা পাতাকে জড়িয়ে লুকিয়ে পড়ে এবং একাধিক প্রজাতি ক্ষতি করে, যেমন ডায়মন্ড ব্যাক, আর্মিওয়ার্ম।"
+    },
+    "prevention": {
+      "en": "➤ Find and cut affected leaves in the morning.\n➤ Spray BT (Bacillus thuringiensis) which is very effective against caterpillars.\n➤ Use pheromone traps to catch male pests.\n➤ Apply Neem-X, Bio-Magic, or Spinosad when pests are seen.",
+      "bn": "➤ সকালে আক্রান্ত পাতা খুঁজে কেটে ফেলা।\n➤ BT (Bacillus thuringiensis) স্প্রে করতে পারেন যা শুঁয়োপোকা দমনে খুব কার্যকর।\n➤ ফেরোমন ফাঁদ ব্যবহার করে পুরুষ পোকা ধরতে পারেন।\n➤ পোকা দেখলে Neem-X, Bio-Magic বা Spinosad প্রয়োগ করুন।"
+    }
+  }
+]
+
