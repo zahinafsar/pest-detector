@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
 import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -25,10 +27,10 @@ public class SettingsActivity extends AppCompatActivity {
     private String[] settingsOptions;
     private int[] settingsIcons = {
         android.R.drawable.ic_menu_myplaces,
-        android.R.drawable.ic_menu_upload,
         android.R.drawable.ic_menu_info_details,
         android.R.drawable.ic_menu_edit,
-        android.R.drawable.ic_menu_agenda
+        android.R.drawable.ic_menu_agenda,
+        android.R.drawable.ic_menu_myplaces
     };
 
     @Override
@@ -39,10 +41,10 @@ public class SettingsActivity extends AppCompatActivity {
         // Initialize string array after activity is created
         settingsOptions = new String[]{
             getString(R.string.login),
-            getString(R.string.add_new_dataset),
             getString(R.string.developer_info),
             getString(R.string.language),
-            getString(R.string.statistics)
+            getString(R.string.statistics),
+            getString(R.string.ai_chat)
         };
 
         // Initialize views
@@ -91,16 +93,16 @@ public class SettingsActivity extends AppCompatActivity {
                 handleLoginClick();
                 break;
             case 1:
-                handleAddDatasetClick();
-                break;
-            case 2:
                 handleDevInfoClick();
                 break;
-            case 3:
+            case 2:
                 handleLanguageClick();
                 break;
-            case 4:
+            case 3:
                 handleStatisticsClick();
+                break;
+            case 4:
+                handleAIChatClick();
                 break;
         }
     }
@@ -140,18 +142,26 @@ public class SettingsActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void handleAddDatasetClick() {
-        // TODO: Implement add dataset functionality
-        Toast.makeText(this, getString(R.string.add_dataset_coming_soon), Toast.LENGTH_SHORT).show();
-        // You can add dataset upload implementation here
-        // For example: startActivity(new Intent(this, AddDatasetActivity.class));
+    private void handleDevInfoClick() {
+        showDeveloperInfoBottomSheet();
     }
 
-    private void handleDevInfoClick() {
-        // TODO: Implement dev info functionality
-        Toast.makeText(this, getString(R.string.dev_info_coming_soon), Toast.LENGTH_SHORT).show();
-        // You can add developer info implementation here
-        // For example: startActivity(new Intent(this, DevInfoActivity.class));
+    private void showDeveloperInfoBottomSheet() {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_developer_info, null);
+        bottomSheetDialog.setContentView(bottomSheetView);
+
+        // Set app version
+        TextView appVersion = bottomSheetView.findViewById(R.id.appVersion);
+        try {
+            String versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+            int versionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
+            appVersion.setText("Version " + versionName + " (" + versionCode + ")");
+        } catch (Exception e) {
+            appVersion.setText("Version 1.0");
+        }
+
+        bottomSheetDialog.show();
     }
 
     private void handleLanguageClick() {
@@ -207,6 +217,11 @@ public class SettingsActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
+    }
+
+    private void handleAIChatClick() {
+        Intent intent = new Intent(this, ChatActivity.class);
+        startActivity(intent);
     }
 
     private class SettingsAdapter extends BaseAdapter {

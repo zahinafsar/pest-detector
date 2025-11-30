@@ -1,9 +1,12 @@
 package com.example.pestsignal;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,6 +14,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +24,10 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -32,8 +40,11 @@ import androidx.core.view.WindowInsetsCompat;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -65,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView preventionMethods;
     private OkHttpClient client;
     private ActivityResultLauncher<String> imagePickerLauncher;
+    private ActivityResultLauncher<Uri> cameraLauncher;
+    private ActivityResultLauncher<String> cameraPermissionLauncher;
+    private Button galleryButton;
+    private Button cameraButton;
+    private Uri cameraImageUri;
+    private static final int CAMERA_PERMISSION_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
 
         detectButton = findViewById(R.id.detectButton);
         settingsButton = findViewById(R.id.settingsButton);
+        galleryButton = findViewById(R.id.galleryButton);
+        cameraButton = findViewById(R.id.cameraButton);
         imageView = findViewById(R.id.imageView);
         placeholderText = findViewById(R.id.placeholderText);
         detectionScrollView = findViewById(R.id.detectionScrollView);
@@ -110,8 +129,34 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
         
+        // Set up camera permission launcher
+        cameraPermissionLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(),
+                isGranted -> {
+                    if (isGranted) {
+                        launchCamera();
+                    } else {
+                        Toast.makeText(this, "Camera permission is required to take photos", Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+        
+        // Set up camera launcher
+        cameraLauncher = registerForActivityResult(
+                new ActivityResultContracts.TakePicture(),
+                success -> {
+                    if (success && cameraImageUri != null) {
+                        handleImageSelection(cameraImageUri);
+                    } else if (!success) {
+                        Toast.makeText(this, "Failed to capture image", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+        
         // Set up button click listeners
         settingsButton.setOnClickListener(v -> openSettings());
+        galleryButton.setOnClickListener(v -> openGallery());
+        cameraButton.setOnClickListener(v -> openCamera());
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -143,8 +188,64 @@ public class MainActivity extends AppCompatActivity {
         textPaint.setStyle(Paint.Style.FILL);
     }
 
-    public void selectImage(View view) {
+    private void openGallery() {
         imagePickerLauncher.launch("image/*");
+    }
+
+    private void openCamera() {
+        // Check camera permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) 
+                != PackageManager.PERMISSION_GRANTED) {
+            // Request permission
+            cameraPermissionLauncher.launch(Manifest.permission.CAMERA);
+        } else {
+            launchCamera();
+        }
+    }
+
+    private void launchCamera() {
+        try {
+            File photoFile = createImageFile();
+            if (photoFile != null) {
+                cameraImageUri = FileProvider.getUriForFile(
+                        this,
+                        getPackageName() + ".fileprovider",
+                        photoFile
+                );
+                cameraLauncher.launch(cameraImageUri);
+            } else {
+                Toast.makeText(this, "Error creating image file", Toast.LENGTH_SHORT).show();
+            }
+        } catch (IOException e) {
+            Log.e("MainActivity", "Error opening camera", e);
+            Toast.makeText(this, "Error opening camera: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        } catch (IllegalArgumentException e) {
+            Log.e("MainActivity", "FileProvider error", e);
+            Toast.makeText(this, "Error accessing camera. Please try again.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        
+        // Create directory if it doesn't exist
+        if (storageDir != null && !storageDir.exists()) {
+            storageDir.mkdirs();
+        }
+        
+        // Fallback to cache directory if external files directory is not available
+        if (storageDir == null) {
+            storageDir = getCacheDir();
+        }
+        
+        File image = File.createTempFile(
+                imageFileName,
+                ".jpg",
+                storageDir
+        );
+        return image;
     }
 
     public void predict(View view) {
@@ -293,8 +394,33 @@ public class MainActivity extends AppCompatActivity {
     
     private void handleImageSelection(Uri imageUri) {
         try {
-            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
-            if (bitmap != null) {
+            Bitmap selectedBitmap = null;
+            
+            // Handle different URI schemes
+            if (imageUri.getScheme() != null && imageUri.getScheme().equals("content")) {
+                // Content URI (from gallery)
+                selectedBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+            } else if (imageUri.getScheme() != null && imageUri.getScheme().equals("file")) {
+                // File URI (from camera)
+                String filePath = imageUri.getPath();
+                if (filePath != null) {
+                    selectedBitmap = BitmapFactory.decodeFile(filePath);
+                }
+            } else {
+                // Try direct path
+                String filePath = imageUri.getPath();
+                if (filePath != null) {
+                    selectedBitmap = BitmapFactory.decodeFile(filePath);
+                }
+            }
+            
+            // Fallback: try MediaStore if other methods failed
+            if (selectedBitmap == null) {
+                selectedBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+            }
+            
+            if (selectedBitmap != null) {
+                bitmap = selectedBitmap;
                 // Display the selected image immediately
                 imageView.setImageBitmap(bitmap);
                 placeholderText.setVisibility(View.GONE);
@@ -310,6 +436,27 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (IOException e) {
             Log.e("MainActivity", "Error loading image", e);
+            // Try alternative method for camera images
+            try {
+                String filePath = imageUri.getPath();
+                if (filePath != null) {
+                    bitmap = BitmapFactory.decodeFile(filePath);
+                    if (bitmap != null) {
+                        imageView.setImageBitmap(bitmap);
+                        placeholderText.setVisibility(View.GONE);
+                        detectionScrollView.setVisibility(View.GONE);
+                        
+                        // Reset detection info
+                        insectName.setText("");
+                        insectType.setText("");
+                        insectDescription.setText("");
+                        preventionMethods.setText("");
+                        return;
+                    }
+                }
+            } catch (Exception ex) {
+                Log.e("MainActivity", "Error loading image from file path", ex);
+            }
             Toast.makeText(this, "Error loading image: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }

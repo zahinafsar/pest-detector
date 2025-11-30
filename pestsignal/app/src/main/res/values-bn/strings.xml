@@ -5,6 +5,8 @@
     <!-- Main Activity -->
     <string name="title_pestsignal">পেস্ট সিগনাল</string>
     <string name="add_image_to_detect">ছবি নির্বাচন করুন</string>
+    <string name="choose_from_gallery">গ্যালারি</string>
+    <string name="take_photo">ক্যামেরা</string>
     <string name="detect_button">শনাক্ত করুন</string>
     <string name="processing">প্রক্রিয়াকরণ হচ্ছে...</string>
     <string name="detection_results">শনাক্তকরণ ফলাফল</string>
@@ -29,6 +31,10 @@
     <string name="add_dataset_coming_soon">ডেটাসেট যোগ করার বৈশিষ্ট্য শীঘ্রই আসছে!</string>
     <string name="dev_info_coming_soon">ডেভেলপার তথ্য বৈশিষ্ট্য শীঘ্রই আসছে!</string>
     <string name="language_coming_soon">ভাষা নির্বাচন শীঘ্রই আসছে!</string>
+    <string name="developed_by">উন্নয়ন করেছেন</string>
+    <string name="contact">যোগাযোগ</string>
+    <string name="about">সম্পর্কে</string>
+    <string name="app_description">পেস্ট সিগনাল একটি বুদ্ধিমান পোকা শনাক্তকরণ অ্যাপ্লিকেশন যা উন্নত চিত্র স্বীকৃতি প্রযুক্তি ব্যবহার করে কীটপতঙ্গ শনাক্ত করতে এবং পরিচালনা করতে সহায়তা করে।</string>
     
     <!-- Login Activity -->
     <string name="login_title">লগইন</string>
@@ -64,4 +70,16 @@
     <string name="user_not_logged_in">ব্যবহারকারী লগইন করেননি</string>
     <string name="failed_to_load_statistics">পরিসংখ্যান লোড করতে ব্যর্থ</string>
     <string name="please_login_first">পরিসংখ্যান দেখতে অনুগ্রহ করে প্রথমে লগইন করুন</string>
+    
+    <!-- Chat Activity -->
+    <string name="ai_chat">AI চ্যাট</string>
+    <string name="type_message">একটি বার্তা টাইপ করুন...</string>
+    <string name="send">পাঠান</string>
+    <string name="clear_chat">চ্যাট সাফ করুন</string>
+    <string name="ai_thinking">AI চিন্তা করছে...</string>
+    <string name="ai_welcome_message">হ্যালো! আমি আপনার PestSignal এর AI সহায়ক। আমি কীটপতঙ্গ শনাক্তকরণ, প্রতিরোধ পদ্ধতি এবং আপনার শনাক্তকরণ ইতিহাস সম্পর্কে প্রশ্নে আপনাকে সাহায্য করতে পারি। আজ আমি আপনাকে কীভাবে সাহায্য করতে পারি?</string>
+    <string name="ai_context_loaded">আমার কাছে আপনার শনাক্তকরণ পরিসংখ্যানের অ্যাক্সেস রয়েছে এবং আমি আপনার শনাক্তকরণ ইতিহাসের উপর ভিত্তি করে ব্যক্তিগতকৃত অন্তর্দৃষ্টি প্রদান করতে পারি।</string>
+    <string name="ai_error">AI এর সাথে যোগাযোগে ত্রুটি</string>
+    <string name="ai_no_response">AI থেকে কোন প্রতিক্রিয়া পাওয়া যায়নি</string>
+    <string name="loading_chat">চ্যাট লোড হচ্ছে...</string>
 </resources> 

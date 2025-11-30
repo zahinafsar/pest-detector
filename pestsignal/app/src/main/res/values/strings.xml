@@ -5,6 +5,8 @@
     <!-- Main Activity -->
     <string name="title_pestsignal">PestSignal</string>
     <string name="add_image_to_detect">Add image to detect</string>
+    <string name="choose_from_gallery">Gallery</string>
+    <string name="take_photo">Camera</string>
     <string name="detect_button">Detect</string>
     <string name="processing">Processing...</string>
     <string name="detection_results">Detection Results</string>
@@ -31,6 +33,10 @@
     <string name="add_dataset_coming_soon">Add Dataset feature coming soon!</string>
     <string name="dev_info_coming_soon">Developer Info feature coming soon!</string>
     <string name="language_coming_soon">Language selection coming soon!</string>
+    <string name="developed_by">Developed By</string>
+    <string name="contact">Contact</string>
+    <string name="about">About</string>
+    <string name="app_description">PestSignal is an intelligent insect detection application that helps identify and manage pests using advanced image recognition technology.</string>
     
     <!-- Login Activity -->
     <string name="login_title">Login</string>
@@ -83,4 +89,21 @@
     <string name="error_loading_model">Error loading model</string>
     <string name="permission_denied_images_local">Permission denied to access images</string>
     <string name="local_detection">Local Detection</string>
+    
+    <!-- Chat Activity -->
+    <string name="ai_chat">AI Chat</string>
+    <string name="type_message">Type a message...</string>
+    <string name="send">Send</string>
+    <string name="clear_chat">Clear Chat</string>
+    <string name="ai_thinking">AI is thinking...</string>
+    <string name="ai_welcome_message">Hello! I\'m your AI assistant for PestSignal. I can help you with questions about pest detection, prevention methods, and your detection history. How can I assist you today?</string>
+    <string name="ai_context_loaded">I have access to your detection statistics and can provide personalized insights based on your detection history.</string>
+    <string name="ai_error">Error communicating with AI</string>
+    <string name="ai_no_response">No response received from AI</string>
+    <string name="openai_api_key_required">OpenAI API key is required. Please set it in Settings.</string>
+    <string name="openai_api_key">OpenAI API Key</string>
+    <string name="enter_openai_api_key">Enter your OpenAI API Key</string>
+    <string name="api_key_saved">API key saved successfully</string>
+    <string name="api_key_removed">API key removed</string>
+    <string name="loading_chat">Loading chat...</string>
 </resources>
