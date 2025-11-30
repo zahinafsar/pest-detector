@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: pestsignal-server
+    runtime: node
+    plan: starter
+    buildCommand: cd server && npm install && npx tsc && npx prisma generate && npx prisma migrate deploy
+    startCommand: cd server && node dist/src/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_DIRECT_URL
+        sync: false
+
