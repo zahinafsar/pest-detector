@@ -32,7 +32,7 @@ import java.util.PriorityQueue;
 public class Yolo11 {
     // Model constants
     private static final Size INPUT_SIZE = new Size(320, 320);
-    private static final int[] OUTPUT_SIZE = new int[]{1, 9, 2100};
+    private static final int[] OUTPUT_SIZE = new int[]{1, 13, 2100};
     private static final String LABEL_FILE = "label.txt";
 
     // Detection thresholds

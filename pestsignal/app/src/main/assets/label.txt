@@ -1,5 +1,9 @@
-grasshopper
-beetle
-aphid
-snail
-caterpillar
+Brown Planthopper
+Brown Planthopper Larva
+Fruit Borer
+Fruit Borer Larva
+Leaf Folder
+Leaf Folder Larva
+Stem Borer
+Stem Borer Larva
+Whitefly
