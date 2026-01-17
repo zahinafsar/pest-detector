@@ -3,16 +3,12 @@ package com.example.pestsignal;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.RectF;
-import android.os.Build;
 import android.util.Log;
 import android.util.Size;
 import android.widget.Toast;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.Interpreter;
-import org.tensorflow.lite.gpu.GpuDelegate;
-import org.tensorflow.lite.gpu.CompatibilityList;
-import org.tensorflow.lite.nnapi.NnApiDelegate;
 import org.tensorflow.lite.support.common.FileUtil;
 import org.tensorflow.lite.support.common.ops.NormalizeOp;
 import org.tensorflow.lite.support.image.ImageProcessor;
@@ -356,28 +352,22 @@ public class Yolo11 {
 
 
     /**
-     * Add NNAPI delegate for hardware acceleration (Android Pie+)
+     * Add NNAPI delegate for hardware acceleration (disabled - use CPU for better compatibility)
      */
     public void addNNApiDelegate() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            NnApiDelegate nnApiDelegate = new NnApiDelegate();
-            options.addDelegate(nnApiDelegate);
-            Log.i("Yolo11", "Using NNAPI delegate");
-        }
+        // NNAPI delegate disabled due to compatibility issues on some devices
+        // Using CPU threads provides more reliable performance
+        Log.i("Yolo11", "NNAPI delegate disabled for compatibility");
     }
 
     /**
-     * Add GPU delegate for hardware acceleration
+     * Add GPU delegate for hardware acceleration (disabled - use CPU for better compatibility)
      */
     public void addGPUDelegate() {
-        CompatibilityList compatibilityList = new CompatibilityList();
-        if (compatibilityList.isDelegateSupportedOnThisDevice()) {
-            GpuDelegate gpuDelegate = new GpuDelegate();
-            options.addDelegate(gpuDelegate);
-            Log.i("Yolo11", "Using GPU delegate");
-        } else {
-            addThread(4);
-        }
+        // GPU delegate disabled for better compatibility across devices
+        // Use CPU with multiple threads instead
+        Log.i("Yolo11", "GPU delegate disabled, using CPU with 4 threads for better compatibility");
+        addThread(4);
     }
 
     /**

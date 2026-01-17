@@ -14,8 +14,34 @@
 
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+-keepattributes SourceFile,LineNumberTable
 
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# TensorFlow Lite
+-keep class org.tensorflow.lite.** { *; }
+-keep interface org.tensorflow.lite.** { *; }
+-keepclassmembers class org.tensorflow.lite.** { *; }
+
+# TensorFlow Lite GPU Delegate
+-keep class org.tensorflow.lite.gpu.** { *; }
+-keepclassmembers class org.tensorflow.lite.gpu.** { *; }
+
+# TensorFlow Lite NNAPI Delegate
+-keep class org.tensorflow.lite.nnapi.** { *; }
+-keepclassmembers class org.tensorflow.lite.nnapi.** { *; }
+
+# TensorFlow Lite Support
+-keep class org.tensorflow.lite.support.** { *; }
+-keepclassmembers class org.tensorflow.lite.support.** { *; }
+
+# OkHttp
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+
+# MPAndroidChart
+-keep class com.github.mikephil.charting.** { *; }

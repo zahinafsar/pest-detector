@@ -168,12 +168,12 @@ public class MainActivity extends AppCompatActivity {
     private void initializeDetector() {
         detector = new Yolo11();
         detector.setModelFile("model.tflite");
+        
+        // Use CPU with multiple threads for maximum compatibility
+        // GPU and NNAPI delegates disabled due to compatibility issues on some devices
+        detector.addThread(4);
+        
         detector.initialModel(this);
-        // Add hardware acceleration if available
-        detector.addGPUDelegate();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            detector.addNNApiDelegate();
-        }
     }
 
     private void setupPaints() {
